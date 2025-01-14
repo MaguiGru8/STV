@@ -1,0 +1,109 @@
+<% content_for :page_title do %>
+  <%= @kommunity.name %> | <%= @edfeg.event.name %> | <%= @edfeg.name %> Responses
+<% end %>
+<section class="container-fluid" id="data-form-entities-form-responses">
+  <div>
+
+    <div class="card">
+      <div class="card-header">
+        <%= @edfeg.event.name %> :: Responses :: <strong><%= @edfeg.name %></strong>
+      </div>
+      <div class="card-body">
+
+        <div class="response-group-email-controls">
+          <%= render 'group_email_controls', edfeg: @edfeg %>
+        </div>
+
+        <div class="mt-3">
+          <ul class="list-group d-flex flex-row">
+
+          <% @edfeg.data_form_entities.order('created_at').each do |dfe| %>
+            <li class="list-group-item">
+            <%= link_to 'On The Spot Registration', fill_form_response_path(data_form_entity_id: dfe, for_other_user: true, ots: true), class: 'ml-2 text-primary' %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to 'Attendance Page', auto_attendance_event_entry_passes_path(event: @edfeg.event), class: 'ml-2 text-primary' %>
+            </li>
+          <% end %>
+          </ul>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-hover table-fixed">
+        <thead>
+        <tr>
+          <th scope="col" class="sticky-row sticky-col">
+            <p>#</p>
+          </th>
+          <th scope="col" class="sticky-row sticky-box">
+            <p>Name / Email</p>
+            <p>
+              Registration Status / Actions
+              <br>
+              <small>Locations displayed in the order of preference (if) selected by user</small>
+            </p>
+            <div>
+              <%= render 'event_data_form_entity_groups/registration_status_counter_filter', edfeg: @edfeg, selected_status: @selected_status %>
+            </div>
+          </th>
+          <th scope="col" class="sticky-row">
+            <p>Profile Details</p>
+          </th>
+
+          <% if @edfeg.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
+          <th class="sticky-row">
+            <p>Session Flow + Slides (Links)</p>
+          </th>
+
+          <% end %>
+
+          <% @edfeg.data_form_entities.each do |dfe| %>
+          <%  dfe.data_form.questions.with_deleted.each do |question| %>
+          <th scope="col" class="sticky-row">
+            <p>
+              <%= question.title %>
+            </p>
+          </th>
+          <% end %>
+          <% end %>
+
+        </tr>
+
+        </thead>
+        <tbody id="form-responses-container">
+        <!--TODO Optimize the query to show responses-->
+
+
+
+
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+
+
+  </div>
+
+  <script>
+
+      function getFormResponses(registrationStatus, kommunity, eventDataFormEntityGroupId, page){
+          $.getScript( `/${kommunity}/form-responses-data?event_data_form_entity_group_id=${eventDataFormEntityGroupId}&page=${page}&registration_status=${registrationStatus}` )
+              .done(function( script, textStatus ) {
+                  console.log('*');
+              });
+      }
+
+
+      getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', '<%= @page %>');
+  </script>
+
+</section>

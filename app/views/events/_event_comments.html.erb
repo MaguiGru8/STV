@@ -1,0 +1,41 @@
+<section class="event-comments bg-white p-3" id="event-comments-<%= event.id %>">
+  <h4>Comments</h4>
+
+
+  <div>
+    <ul class="list-group list-group-flush" id="event-comments-list-<%= event.id %>">
+      <% event.comments.order('created_at').each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    </ul>
+
+  </div>
+
+  <% if user_signed_in? %>
+  <%= form_for new_comment, html: {class: 'row event-comment-form', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
+
+  <div class="col-10">
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!', rows: 1, onkeydown: 'textAreaRowIncrementor(event, this);', required: true %>
+  </div>
+  <div class="col-2">
+    <%= button_tag type: 'submit', class: "btn btn-info p-2 comment-submit-button" do %>
+    <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
+    <% end %>
+  </div>
+
+
+  <% end %>
+  <% else %>
+
+
+  <%= link_to "Sign In / Sign Up To Comment", user_google_oauth2_omniauth_authorize_path %>
+
+
+
+
+  <% end %>
+
+
+
+
+</section>
