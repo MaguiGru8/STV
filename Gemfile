@@ -33,8 +33,6 @@ gem 'jquery-rails'
 
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'omniauth-google-oauth2'
-
 gem 'devise'
 
 gem 'pg'

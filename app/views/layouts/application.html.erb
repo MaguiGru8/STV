@@ -74,11 +74,9 @@
           </div>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "align-middle" %>
         <% else %>
-          <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-            <p id="google-auth-button" class="mb-0">
-             <%= image_tag '/images/btn_google_light_normal.svg', width: 45 %> <span class="buttonText">Sign In / Sign Up</span>
-            </p>
-          <% end %>
+          <p id="google-auth-button" class="mb-0">
+            <%= image_tag '/images/btn_google_light_normal.svg', width: 45 %> <span class="buttonText">Sign In / Sign Up</span>
+          </p>
         <% end %>
       </div>
       </div>
@@ -118,7 +116,7 @@
 
           </div>
           <div class="modal-body d-flex justify-content-center">
-            <%= link_to "Google Sign In", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-success' %>
+            <%= link_to "Google Sign In", class: 'btn btn-outline-success' %>
           </div>
         </div>
       </div>
