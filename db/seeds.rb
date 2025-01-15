@@ -6,25 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(
-  email: 'admin@example.com',
-  password: '123456',
-  password_confirmation: '123456'
-)
-
-
-
-begin
-  User.create!(
-    email: 'admin@example.com',
-    password: '123456',
-    password_confirmation: '123456'
-  )
-  puts "User created successfully!"
-rescue => e
-  puts "Error creating user: #{e.message}"
-end
-
 UserRole.create([{ :name => 'system_administrator' }, { :name => 'organizer'}, { :name => 'member' }])
 
 QuestionType.create([{ :name => 'short_answer' }, { :name => 'long_answer'}, { :name => 'number' }, { :name => 'single_choice' }, { :name => 'multiple_choice' }])
@@ -35,6 +16,12 @@ RegistrationStatus.create([{name: "registered"}, { name: "waiting"}, { name: "sh
 RegistrationType.create([{ name: "attendee"}, { name: "speaker"}, {name: "feedback"}, {name: "communication"}])
 
 EventStatus.create([{ name: "draft"}, { name: "open"}, { name: "announced"}, { name: "ongoing"}, { name: "completed"}, {name: "canceled"} ])
+
+User.create!(
+  email: 'admin@example.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
 
 
 RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
