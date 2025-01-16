@@ -23,6 +23,17 @@ User.create!(
   password_confirmation: '123456'
 )
 
+User.create!(
+  email: 'orga@example.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
+User.create!(
+  email: 'member@example.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
 
 RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
   RegistrationStatus.all.each do |rst|
