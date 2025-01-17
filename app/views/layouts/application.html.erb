@@ -41,7 +41,7 @@
   </head>
 
   <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow bg-white rounded pt-0 pb-0">
+    <nav class="navbar fixed-top navbar-expand-lg bg-light shadow bg-white rounded pt-0 pb-0">
       <a class="navbar-brand" href="#">
         <%= image_tag '/images/gdglogo.png', width: 30 %>
       </a>
@@ -74,8 +74,8 @@
           </div>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "align-middle" %>
         <% else %>
-          <p id="google-auth-button" class="mb-0">
-            <%= image_tag '/images/btn_google_light_normal.svg', width: 45 %> <span class="buttonText">Sign In / Sign Up</span>
+          <p class="mb-0">
+            <%= link_to "Sign In / Sign Up", new_user_session_path, class: "btn btn-primary" %>
           </p>
         <% end %>
       </div>

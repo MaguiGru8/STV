@@ -54,7 +54,7 @@
       Ask <%= @resource.user.name %>!
     </button>
     <% else %>
-    <%= link_to "Sign In / Sign Up To Create Discussion", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary mb-3' %>
+    <%= link_to "Sign In / Sign Up To Create Discussion", class: 'btn btn-primary mb-3' %>
     <% end %>
 
     <div id="discussions-list-<%= @resource.id %>" class="card-columns">
