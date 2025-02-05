@@ -1,5 +1,5 @@
 <section class="event-comments bg-white p-3" id="event-comments-<%= event.id %>">
-  <h4>Comments</h4>
+  <h4>Comentarios</h4>
 
 
   <div>
@@ -15,7 +15,7 @@
   <%= form_for new_comment, html: {class: 'row event-comment-form', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
 
   <div class="col-10">
-    <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!', rows: 1, onkeydown: 'textAreaRowIncrementor(event, this);', required: true %>
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Tu aporte', rows: 1, onkeydown: 'textAreaRowIncrementor(event, this);', required: true %>
   </div>
   <div class="col-2">
     <%= button_tag type: 'submit', class: "btn btn-info p-2 comment-submit-button" do %>
@@ -28,7 +28,7 @@
   <% else %>
 
 
-  <%= link_to "Sign In / Sign Up To Comment" %>
+  <%= link_to "Inicia sesion para comentar" %>
 
 
 

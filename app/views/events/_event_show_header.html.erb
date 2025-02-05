@@ -41,11 +41,11 @@
       <div>
         <%= form_with url: update_header_image_event_path(id: event), id: 'event-header-image-form', method: :put do |f|%>
         <div class="form-group">
-          <%= f.label :header_image, 'Choose Header', for: 'event-header-image', class: 'custom-file-label' %>
-          <%= f.file_field :header_image, class: 'custom-file-input', onChange: 'showImage(this, "event-header-background", "background");', id: 'event-header-image', onchange: 'Rails.fire(this.form, "submit")', accept: "image/*" %>
+          <%= f.label :header_image, 'Cambiar portada', for: 'event-header-image', class: 'custom-file-label' %>
+          <%= f.file_field :header_image,  class: 'custom-file-input', onChange: 'showImage(this, "event-header-background", "background");', id: 'event-header-image', onchange: 'Rails.fire(this.form, "submit")', accept: "image/*" %>
 
         </div>
-        <%= f.submit 'Upload', class: 'btn btn-outline-info' %>
+        <%= f.submit 'Subir imagen', class: 'btn btn-outline-info' %>
         <% end %>
       </div>
       <% end %>

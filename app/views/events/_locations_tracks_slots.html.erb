@@ -1,14 +1,14 @@
 <div class="event-location-track-slots-widget" id="event-tracks-creator-<%= event.id %>">
   <div class=" p-3">
 
-    <h3>Agenda <% if event.event_location_tracks.empty? %><small>(Coming Soon)</small><% end %></h3>
+    <h3>Agenda <% if event.event_location_tracks.empty? %><small>próximamente</small><% end %></h3>
     <div class="event-location-tracks-grid">
       <% if !event.event_location_tracks.empty? || (user_signed_in? && current_user.role?(:organizer, event.kommunity_id)) %>
       <div class="row">
 
         <div class="col-md-2">
           <p class="mb-0">
-            <small class="text-muted">Venue</small>
+            <small class="text-muted">Locación</small>
           </p>
           <div class="nav bg-white p-3  flex-md-column flex-sm-row flex-sm-nowrap justify-content-md-center nav-pills" id="v-pills-event-locations-tab" role="tablist" aria-orientation="vertical">
             <% event.event_locations.each_with_index do |elc, index| %>
@@ -19,7 +19,7 @@
             <% if allowed_view?(:locations, :create) %>
             <a class="nav-link btn text-left" id="add-location-button"  data-toggle="modal" data-target="
             #new-event-location-modal">
-              <i class="fas fa-plus-circle fa-1x text-success"></i> Add Location
+              <i class="fas fa-plus-circle fa-1x text-success"></i> Añadir locación
             </a>
             <% end %>
           </div>

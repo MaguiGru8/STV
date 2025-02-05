@@ -13,9 +13,9 @@ QuestionType.create([{ :name => 'short_answer' }, { :name => 'long_answer'}, { :
 
 RegistrationStatus.create([{name: "registered"}, { name: "waiting"}, { name: "shortlisted"}, { name: "confirmed"}, { name: "cancelled"}])
 
-RegistrationType.create([{ name: "attendee"}, { name: "speaker"}, {name: "feedback"}, {name: "communication"}])
+RegistrationType.create([{ name: "asistentes"}, { name: "disertantes"}, {name: "feedback"}, {name: "communicacion"}])
 
-EventStatus.create([{ name: "draft"}, { name: "open"}, { name: "announced"}, { name: "ongoing"}, { name: "completed"}, {name: "canceled"} ])
+EventStatus.create([{ name: "borrador"}, { name: "abierto"}, { name: "publicado"}, { name: "desarrollandose"}, { name: "completado"}, {name: "canceled"} ])
 
 User.create!(
   email: 'admin@example.com',
@@ -35,7 +35,7 @@ User.create!(
   password_confirmation: '123456'
 )
 
-RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
+RegistrationType.where("name in (?)", ["asistente", "disertante"]).each do |rt|
   RegistrationStatus.all.each do |rst|
     rst.registration_types << rt
   end
