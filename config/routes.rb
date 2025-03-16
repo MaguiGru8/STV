@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   # specifically for devfest
-  get '/devfest', to: redirect('/gdg-new-delhi/events/devfest-18')
+
 
   resources :kommunities, only: [:new, :create, :edit, :update], param: :kommunity
 

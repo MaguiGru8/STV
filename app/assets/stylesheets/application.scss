@@ -13,9 +13,159 @@
  *= require_tree .
  *= require_self
  */
-@import "font-awesome";
+@import 'variables';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'navbar';
 
 
+
+// Estilos para la página principal
+#home-home {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  // Estilos para las cards
+  .hover-card {
+    transition: all 0.3s ease;
+    border: none;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    }
+  }
+
+  // Estilos para los títulos de sección
+  h2 {
+    font-weight: 600;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: currentColor;
+      border-radius: 2px;
+    }
+  }
+
+  // Estilos para los iconos
+  .fas {
+    opacity: 0.9;
+  }
+
+  // Estilos para las cards de eventos y comunidades
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .card-text {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Animación para cargar elementos
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .row > div {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+}
+
+// Estilos responsivos
+@media (max-width: 768px) {
+  #home-home {
+    .container {
+      padding: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .card {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+// Estilos personalizados para la vista de kommunity
+.kommunity-logo-container {
+  img {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Estilos para las cards de eventos
+.event-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  }
+}
+
+// Mejoras para el acordeón
+.accordion {
+  .accordion-button {
+    &:not(.collapsed) {
+      background-color: rgba($primary, 0.1);
+      color: $primary;
+    }
+  }
+}
+
+// Mejoras para los badges
+.badge {
+  font-weight: 500;
+  padding: 0.5em 1em;
+}
+
+// Mejoras para los botones de acción
+.btn-outline-primary, .btn-outline-success {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 .25rem .5rem rgba(0,0,0,.1);
+  }
+}
+
+// Estilos para las listas
+.list-group-item-action {
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba($primary, 0.05);
+    transform: translateX(5px);
+  }
+}
 
 body{
   //background-color: blue;

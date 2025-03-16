@@ -17,7 +17,7 @@
 //= require moment
 //= require_tree .
 
-
+import "bootstrap";
 
 {
     window.addEventListener('load', function(){

@@ -1,78 +1,64 @@
 <% content_for :page_title do %>
-  Communities | Upcoming Events
+  Seminarios | Próximos
 <% end %>
 
-<section id="home-home">
-
-  <div class="row justify-content-center">
-
-
+<section id="home-home" class="py-5">
+  <div class="container">
+    <!-- Próximos eventos -->
     <% if !@upcoming_events.empty? %>
-    <div class="col-md-9 horizontal-cards">
-      <div>
-        <h3 class="border-bottom text-secondary">Próximos eventos</h3>
-      </div>
-      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
-        <% @upcoming_events.each do |event| %>
-
-        <div class="col-md-4 m-2 p-0">
-          <%= render 'events/event_mini_card', event: event %>
+      <div class="mb-5">
+        <div class="d-flex align-items-center mb-4">
+          <i class="fas fa-calendar-alt text-primary me-3 fa-2x"></i>
+          <h2 class="text-primary mb-0">Próximos eventos</h2>
         </div>
-
-
-        <% end %>
-
+        <div class="row g-4">
+          <% @upcoming_events.each do |event| %>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm hover-card">
+                <%= render 'events/event_mini_card', event: event %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-    </div>
     <% end %>
 
-
-
+    <!-- Comunidades -->
     <% if !@kommunities.empty? %>
-    <div id="kommunity-list" class="col-md-9 horizontal-cards mb-5">
-      <div>
-        <h3 class="border-bottom text-white">Comunidades</h3>
-      </div>
-      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap ">
-        <% @kommunities.each do |kommunity| %>
-
-        <div class="col-md-4 m-2 p-0">
-          <%= render 'kommunities/display_card', kommunity: kommunity %>
+      <div class="mb-5">
+        <div class="d-flex align-items-center mb-4">
+          <i class="fas fa-users text-success me-3 fa-2x"></i>
+          <h2 class="text-success mb-0">Ediciones Seminario Tecnológico de Vanguardia</h2>
         </div>
-
-
-        <% end %>
-
+        <div class="row g-4">
+          <% @kommunities.each do |kommunity| %>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm hover-card">
+                <%= render 'kommunities/display_card', kommunity: kommunity %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-    </div>
     <% end %>
 
-
+    <!-- Eventos pasados -->
     <% if !@recent_past_events.empty? %>
-    <div class="col-md-9 horizontal-cards">
-      <div>
-        <h3 class="border-bottom text-secondary">eventos pasados</h3>
-      </div>
-      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
-        <% @recent_past_events.each do |event| %>
-
-        <div class="m-2 p-0">
-          <%= render 'events/event_mini_card', event: event %>
+      <div class="mb-5">
+        <div class="d-flex align-items-center mb-4">
+          <i class="fas fa-history text-secondary me-3 fa-2x"></i>
+          <h2 class="text-secondary mb-0">Eventos pasados</h2>
         </div>
-
-
-        <% end %>
-
+        <div class="row g-4">
+          <% @recent_past_events.each do |event| %>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm hover-card">
+                <%= render 'events/event_mini_card', event: event %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-    </div>
-
     <% end %>
-
   </div>
-
-
-
 </section>

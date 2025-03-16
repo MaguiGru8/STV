@@ -1,0 +1,70 @@
+<!-- app/views/shared/_navbar.html.erb -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <!-- Logo/Nombre -->
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "d-flex align-items-center text-decoration-none" do %>
+        <%= image_tag "/images/gdglogo.png", class: "me-2", height: "30" %>
+        <span class="fw-bold text-primary">Commudle</span>
+      <% end %>
+    </div>
+
+    <!-- Botón hamburguesa para móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú principal -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to root_path, class: 'nav-link d-flex align-items-center' do %>
+            <i class="fas fa-chalkboard-teacher me-2"></i>
+            <span>Seminarios</span>
+          <% end %>
+        </li>
+      </ul>
+
+      <!-- Menú de usuario -->
+      <div class="d-flex align-items-center">
+        <% if user_signed_in? %>
+          <div class="dropdown">
+            <button class="btn btn-link text-decoration-none dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+              <% if current_user.default_image %>
+                <%= image_tag url_for(current_user.avatar), class: 'rounded-circle me-2', width: "32" %>
+              <% else %>
+                <i class="fas fa-user-circle me-2"></i>
+              <% end %>
+              <span class="me-2"><%= current_user.name %></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <% if current_user.role?(:system_administrator, nil) %>
+                <li>
+                  <%= link_to new_kommunity_path, class: 'dropdown-item d-flex align-items-center' do %>
+                    <i class="fas fa-plus-circle me-2"></i>
+                    <span>Crear un seminario</span>
+                  <% end %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+              <% end %>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item d-flex align-items-center text-danger' do %>
+                  <i class="fas fa-sign-out-alt me-2"></i>
+                  <span>Salir</span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+          <%= link_to new_user_session_path, class: 'btn btn-primary d-flex align-items-center' do %>
+            <i class="fas fa-sign-in-alt me-2"></i>
+            <span>Iniciar sesión</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Espaciador para compensar el navbar fixed-top -->
+<div style="height: 56px;"></div>

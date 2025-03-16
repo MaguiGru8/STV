@@ -1,0 +1,28 @@
+<!-- Success Modal -->
+<div class="modal fade" id="submission-success-modal" tabindex="-1" aria-labelledby="submission-success-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="mt-3 text-center">
+        <h5 id="submission-success-modal-title">Thank You!</h5>
+      </div>
+      <div class="modal-body text-center">
+        <i class="fas fa-check-circle fa-5x text-success"></i>
+        <p class="mt-3">We have saved your response!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sign In Modal -->
+<div class="modal fade" id="force-sign-in-modal" tabindex="-1" aria-labelledby="force-sign-in-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="mt-3 text-center">
+        <h5 id="force-sign-in-modal-title">Bienvenido, por favor iniciá sesión</h5>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        <%= link_to "Google Sign In", class: 'btn btn-outline-success' %>
+      </div>
+    </div>
+  </div>
+</div>

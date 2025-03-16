@@ -12,8 +12,8 @@ module NameValues
 
 
   class RegistrationsType
-    SPEAKER = "speaker"
-    ATTENDEE = "attendee"
+    SPEAKER = "disertantes"
+    ATTENDEE = "asistentes"
     FEEDBACK = "feedback"
   end
 
@@ -38,12 +38,12 @@ module NameValues
 
 
   class EventStatusType
-    DRAFT = "draft"
-    ANNOUNCED = "announced"
-    OPEN = "open"
-    ONGOING = "ongoing"
-    COMPLETED = "completed"
-    CANCELED = "canceled"
+    DRAFT = "borrador"
+    ANNOUNCED = "anunciado"
+    OPEN = "abierto"
+    ONGOING = "desarrollo"
+    COMPLETED = "completado"
+    CANCELED = "cancelado"
   end
 
 

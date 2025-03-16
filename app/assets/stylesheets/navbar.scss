@@ -1,0 +1,56 @@
+// Variables locales
+$navbar-shadow: 0 2px 4px rgba(0,0,0,.08);
+$hover-transition: 0.3s ease;
+
+.navbar {
+  box-shadow: $navbar-shadow;
+
+  .navbar-brand {
+    img {
+      transition: transform $hover-transition;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .nav-link {
+    position: relative;
+
+    &:hover {
+    }
+
+    &:hover {
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      transition: all $hover-transition;
+    }
+
+    &::after {
+    }
+
+    &::after {
+    }
+
+    &::after {
+    }
+
+    &::after {
+    }
+
+    &:hover::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+
+
+}
