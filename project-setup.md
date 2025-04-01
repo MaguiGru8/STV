@@ -9,6 +9,32 @@
     * Login to postgres and create a superuser  **(we need it because we're enabling a couple of extensions)**
       * `create role gdgapp with createdb superuser login password your-password;`   
 
+
+### Commands 
+  * ssh-keygen
+  * git clone
+  * sudo apt-get install software-properties-commo
+  * sudo apt-get update
+  * sudo apt-get upgrade
+  * sudo apt-add-repository -y ppa:rael-gc/rvm
+  * sudo apt-get update
+  * sudo apt-get install rvm
+  * sudo usermod -a -G rvm $USER
+  * rvm install 2.5.0
+  * sudo apt install libpq-dev
+  * sudo apt-get install nodejs
+  * sudo apt install postgresql postgresql-contrib
+  * sudo -i -u postgres
+    * psql
+    * `create role gdgapp with createdb superuser login password your-password;`
+  * bundle install
+  * rails db:setup
+  * rails active_storage:install
+  * rails db:setup
+  * rails db:seed
+  * rails s
+
+
 ### Setup the environment
 * Open bash profile set the following
   * **GDG_APP_DEV_PASS** (development DB password)
@@ -16,7 +42,6 @@
   * **GDG_EMAIL_PASSWORD**
   * **GDG_GOOGLE_CLIENT_ID** (from Google console, enable Google+ API)
   * **GDG_GOOGLE_CLIENT_SECRET** (from Google console, enable Google+ API)
-
 
 
 ### Clone/Download
@@ -27,6 +52,7 @@
 * `rails db:seed` 
 (this will setup the data for roles, question_types, registration status and event status)
 * Create an ER Diagram `rails db:migrate`
+
 
 ### Run the Server
 * `rails s`
