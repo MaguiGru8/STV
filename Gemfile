@@ -13,6 +13,8 @@ gem 'resque'
 
 gem 'resque-scheduler'
 
+gem 'htmlbeautifier'
+
 gem 'font-awesome-rails'
 
 gem 'momentjs-rails'

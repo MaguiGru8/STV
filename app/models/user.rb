@@ -22,16 +22,6 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-
-
-  after_create :assign_default_role
-
-
-  def assign_default_role
-    self.user_roles << UserRole.default_role
-  end
-
-
   def self.from_omniauth(access_token)
     data = access_token.info
     return User.find_or_create(data['email'], "#{data['first_name']} #{data['last_name']}", data['image'])
