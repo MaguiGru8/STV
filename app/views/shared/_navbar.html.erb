@@ -5,15 +5,13 @@
     <div class="navbar-brand">
       <%= link_to root_path, class: "d-flex align-items-center text-decoration-none" do %>
         <%= image_tag "/images/gdglogo.png", class: "me-2", height: "30" %>
-        <span class="fw-bold text-primary">Commudle</span>
+        <span class="fw-bold text-primary">STV</span>
       <% end %>
     </div>
-
     <!-- Botón hamburguesa para móviles -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <!-- Menú principal -->
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -24,7 +22,6 @@
           <% end %>
         </li>
       </ul>
-
       <!-- Menú de usuario -->
       <div class="d-flex align-items-center">
         <% if user_signed_in? %>
@@ -65,6 +62,5 @@
     </div>
   </div>
 </nav>
-
 <!-- Espaciador para compensar el navbar fixed-top -->
 <div style="height: 56px;"></div>

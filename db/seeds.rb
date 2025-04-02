@@ -13,29 +13,37 @@ QuestionType.create([{ :name => 'short_answer' }, { :name => 'long_answer'}, { :
 
 RegistrationStatus.create([{name: "registered"}, { name: "waiting"}, { name: "shortlisted"}, { name: "confirmed"}, { name: "cancelled"}])
 
-RegistrationType.create([{ name: "asistentes"}, { name: "disertantes"}, {name: "feedback"}, {name: "communicacion"}])
+RegistrationType.create([{ name: "attendee"}, { name: "speaker"}, {name: "feedback"}, {name: "communication"}])
 
-EventStatus.create([{ name: "borrador"}, { name: "abierto"}, { name: "publicado"}, { name: "desarrollandose"}, { name: "completado"}, {name: "canceled"} ])
+EventStatus.create([{ name: "draft"}, { name: "open"}, { name: "announced"}, { name: "ongoing"}, { name: "completed"}, {name: "canceled"} ])
 
-User.create!(
+user = User.create!(
   email: 'admin@example.com',
   password: '123456',
   password_confirmation: '123456'
 )
+system_administrator_role = UserRole.find_by_name("system_administrator")
+user.user_roles << system_administrator_role
 
-User.create!(
+
+user = User.create!(
   email: 'orga@example.com',
   password: '123456',
   password_confirmation: '123456'
 )
+organizer_role = UserRole.find_by_name("organizer")
+user.user_roles << organizer_role
 
-User.create!(
+
+user = User.create!(
   email: 'member@example.com',
   password: '123456',
   password_confirmation: '123456'
 )
+member_role = UserRole.find_by_name("member")
+user.user_roles << member_role
 
-RegistrationType.where("name in (?)", ["asistente", "disertante"]).each do |rt|
+RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
   RegistrationStatus.all.each do |rst|
     rst.registration_types << rt
   end

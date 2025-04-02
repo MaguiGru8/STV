@@ -1,16 +1,15 @@
 <% content_for :page_title do %>
   Seminarios | Próximos
 <% end %>
-
 <section id="home-home" class="py-5">
   <div class="container">
     <!-- Próximos eventos -->
-    <% if !@upcoming_events.empty? %>
-      <div class="mb-5">
-        <div class="d-flex align-items-center mb-4">
-          <i class="fas fa-calendar-alt text-primary me-3 fa-2x"></i>
-          <h2 class="text-primary mb-0">Próximos eventos</h2>
-        </div>
+    <div class="mb-5">
+      <div class="d-flex align-items-center mb-4">
+        <i class="fas fa-calendar-alt text-primary me-3 fa-2x"></i>
+        <h2 class="text-primary mb-0">Próximos eventos</h2>
+      </div>
+      <% if !@upcoming_events.empty? %>
         <div class="row g-4">
           <% @upcoming_events.each do |event| %>
             <div class="col-12 col-md-6 col-lg-4">
@@ -20,16 +19,17 @@
             </div>
           <% end %>
         </div>
-      </div>
-    <% end %>
-
+      <% else %>
+        No se han encontrado eventos
+      <% end %>
+    </div>
     <!-- Comunidades -->
-    <% if !@kommunities.empty? %>
-      <div class="mb-5">
-        <div class="d-flex align-items-center mb-4">
-          <i class="fas fa-users text-success me-3 fa-2x"></i>
-          <h2 class="text-success mb-0">Ediciones Seminario Tecnológico de Vanguardia</h2>
-        </div>
+    <div class="mb-5">
+      <div class="d-flex align-items-center mb-4">
+        <i class="fas fa-users text-success me-3 fa-2x"></i>
+        <h2 class="text-success mb-0">Ediciones Seminario Tecnológico de Vanguardia</h2>
+      </div>
+      <% if !@kommunities.empty? %>
         <div class="row g-4">
           <% @kommunities.each do |kommunity| %>
             <div class="col-12 col-md-6 col-lg-4">
@@ -39,16 +39,17 @@
             </div>
           <% end %>
         </div>
-      </div>
-    <% end %>
-
+      <% else %>
+        No se han encontrado eventos
+      <% end %>
+    </div>
     <!-- Eventos pasados -->
-    <% if !@recent_past_events.empty? %>
-      <div class="mb-5">
-        <div class="d-flex align-items-center mb-4">
-          <i class="fas fa-history text-secondary me-3 fa-2x"></i>
-          <h2 class="text-secondary mb-0">Eventos pasados</h2>
-        </div>
+    <div class="mb-5">
+      <div class="d-flex align-items-center mb-4">
+        <i class="fas fa-history text-secondary me-3 fa-2x"></i>
+        <h2 class="text-secondary mb-0">Eventos pasados</h2>
+      </div>
+      <% if !@recent_past_events.empty? %>
         <div class="row g-4">
           <% @recent_past_events.each do |event| %>
             <div class="col-12 col-md-6 col-lg-4">
@@ -58,7 +59,9 @@
             </div>
           <% end %>
         </div>
-      </div>
-    <% end %>
+      <% else %>
+        No se han encontrado eventos
+      <% end %>
+    </div>
   </div>
 </section>

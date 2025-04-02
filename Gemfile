@@ -17,6 +17,8 @@ gem 'font-awesome-rails'
 
 gem 'momentjs-rails'
 
+gem 'htmlbeautifier'
+
 gem 'tinymce-rails'
 
 group :development do
