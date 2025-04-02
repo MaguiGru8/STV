@@ -17,7 +17,29 @@
   * **GDG_GOOGLE_CLIENT_ID** (from Google console, enable Google+ API)
   * **GDG_GOOGLE_CLIENT_SECRET** (from Google console, enable Google+ API)
 
-
+### Commands 
+  * ssh-keygen
+  * git clone
+  * sudo apt-get install software-properties-commo
+  * sudo apt-get update
+  * sudo apt-get upgrade
+  * sudo apt-add-repository -y ppa:rael-gc/rvm
+  * sudo apt-get update
+  * sudo apt-get install rvm
+  * sudo usermod -a -G rvm $USER
+  * rvm install 2.5.0
+  * sudo apt install libpq-dev
+  * sudo apt-get install nodejs
+  * sudo apt install postgresql postgresql-contrib
+  * sudo -i -u postgres
+    * psql
+    * `create role gdgapp with createdb superuser login password your-password;`
+  * bundle install
+  * rails db:setup
+  * rails active_storage:install
+  * rails db:setup
+  * rails db:seed
+  * rails s
 
 ### Clone/Download
 * `bundle install --deployment`
