@@ -1,61 +1,52 @@
 <div class="row" id="event-create-edit-form">
   <div class="card col-md-6 offset-md-3">
     <div class="card-body">
-      <h5 class="card-title">Edit Event Details</h5>
-
+      <h5 class="card-title">Editar detalles de la charla</h5>
       <%= form_for @event, url: (@event.new_record? ?
       events_path : event_path(params[:kommunity], @event.slug)) do |f| %>
-      <fieldset>
-        <div class="form-group">
-          <%= f.label :kommunity, class: "badge badge-secondary" %>
-          <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {:include_blank => 'Select a Kommunity'}, class: 'form-control' , required: true %>
-
-        </div>
-        <div class="form-group">
-          <%= f.label :name, class: "badge badge-secondary" %>
-          <%= f.text_field :name, class: 'form-control', required: true %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :description, class: "badge badge-secondary" %>
-          <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
-        </div>
-
-        <!--<div class="form-group">-->
+        <fieldset>
+          <div class="form-group">
+            <%= f.label :kommunity, class: "badge badge-secondary" %>
+            <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {:include_blank => 'Select a Kommunity'}, class: 'form-control' , required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, class: "badge badge-secondary" %>
+            <%= f.text_field :name, class: 'form-control', required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :description, class: "badge badge-secondary" %>
+            <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
+          </div>
+          <!--<div class="form-group">-->
           <!--<%= f.label :seats, class: "badge badge-secondary" %>-->
           <!--<%= f.number_field :seats, class: 'form-control' %>-->
-        <!--</div>-->
-
-        <div class="form-group">
-          <%= f.label :start_time, "Start Date & Time", class: "badge badge-secondary" %>
-
-          <div style="overflow:hidden;">
-            <div class="form-group">
-              <div class="row">
-                <div class="col">
-                  <%= f.hidden_field :start_time %>
+          <!--</div>-->
+          <div class="form-group">
+            <%= f.label :start_time, "Start Date & Time", class: "badge badge-secondary" %>
+            <div style="overflow:hidden;">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <%= f.hidden_field :start_time %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-
-        <div class="form-group">
-          <%= f.label :end_time, "End Date & Time", class: "badge badge-secondary" %>
-          <div style="overflow:hidden;">
-            <div class="form-group">
-              <div class="row">
-                <div class="col">
-                  <%= f.hidden_field :end_time %>
+          <div class="form-group">
+            <%= f.label :end_time, "End Date & Time", class: "badge badge-secondary" %>
+            <div style="overflow:hidden;">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <%= f.hidden_field :end_time %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <%= f.submit "Submit", class: "btn btn-warning" %>
-        <script type="text/javascript">
+          <%= f.submit "Submit", class: "btn btn-warning" %>
+          <script type="text/javascript">
             $(function () {
                 $('#event_end_time').datetimepicker({
                     inline: true,
@@ -63,7 +54,7 @@
                     format: 'DD-MM-YYYY hh:mm A Z',
                     defaultDate: moment("<%= @event.end_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.end_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
                 });
-
+            
                 $('#event_start_time').datetimepicker({
                     inline: true,
                     sideBySide: true,
@@ -71,16 +62,12 @@
                     defaultDate: moment("<%= @event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
                 });
             });
-
+            
             $('#event_start_time').on("change.datetimepicker", function (e) {
                 $('#event_end_time').datetimepicker('minDate', e.date);
             });
-        </script>
-
-
-
-      </fieldset>
-
+          </script>
+        </fieldset>
       <% end %>
     </div>
   </div>

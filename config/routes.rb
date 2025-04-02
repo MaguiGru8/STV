@@ -5,9 +5,6 @@ Rails.application.routes.draw do
     mount Resque::Server => "/resque"
   end
 
-  # specifically for devfest
-  get '/devfest', to: redirect('/gdg-new-delhi/events/devfest-18')
-
   resources :kommunities, only: [:new, :create, :edit, :update], param: :kommunity
 
   scope ':kommunity' do
