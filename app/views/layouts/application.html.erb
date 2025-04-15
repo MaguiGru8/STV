@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/langs/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
@@ -62,10 +63,10 @@
                 </div>
               <% end %>
             </div>
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "align-middle" %>
+            <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "align-middle" %>
           <% else %>
             <p class="mb-0">
-              <%= link_to "Sign In / Sign Up", new_user_session_path, class: "btn btn-primary" %>
+              <%= link_to "Iniciar sesión o Registrarse", new_user_session_path, class: "btn btn-primary" %>
             </p>
           <% end %>
         </div>
