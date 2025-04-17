@@ -6,7 +6,10 @@ module TranslationsHelper
         'canceled' => 'Cancelado',
         'completed' => 'Completado',
         'ongoing' => 'En proceso',
-        'draft' => 'En borrador'
+        'draft' => 'En borrador',
+        'communication' => 'Comunicación',
+        'attendee' => 'Inscriptos',
+        'speaker' => 'Ponente',
       }
       translations[status_name.downcase] || status_name.titlecase
     end

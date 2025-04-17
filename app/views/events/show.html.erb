@@ -1,212 +1,134 @@
 <% content_for :page_title do %>
   <%= @kommunity.name %> | <%= @event.name %>
 <% end %>
-
-
 <section id="events-show">
-
-    <div>
-
-      <!--<a class="twitter-timeline" href="https://twitter.com/gdg_nd?ref_src=twsrc%5Etfw">Tweets by gdg_nd</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-    </div>
-
-    <div>
-
-      <%= render 'events/event_show_header', event: @event %>
-
-      <!--<p class="badge badge-info badge">Seats: <%= @event.seats %></p>-->
-
-      <div></div>
-
-      <div class="mt-3 mb-3">
-        <% if allowed_view?(:events, :update_event_status) %>
+  <div>
+    <!--<a class="twitter-timeline" href="https://twitter.com/gdg_nd?ref_src=twsrc%5Etfw">Tweets by gdg_nd</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+  </div>
+  <div>
+    <%= render 'events/event_show_header', event: @event %>
+    <!--<p class="badge badge-info badge">Seats: <%= @event.seats %></p>-->
+    <div></div>
+    <div class="mt-3 mb-3">
+      <% if allowed_view?(:events, :update_event_status) %>
         <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
-        <% end %>
-      </div>
-      <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-start justify-content-sm-center">
-        <% @event.open_forms.each do |dfe| %>
-
-
-        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "btn form-link shadow p-2 m-2 " do %>
-
-        <i class="fas fa-arrow-alt-circle-right"></i> <strong><%= dfe.entity.name.titlecase %></strong>
-        <% end %>
-
-        <% end %>
-      </div>
-
-
-    </div>
-
-
-
-
-  <% if allowed_view?(:data_form_entities, :form_responses) %>
-  <div class="d-flex row .flex-wrap ">
-    <div class=" p-3 m-2 col-md-3">
-      <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
-      <h5>Crear formularios</h5>
-      <small>Algo como un formulario de registro, formulario de retroalimentación, etc.</small>
-      <div class="form-group">
-        <div class="field">
-          <%= f.label :name, "Nombre" %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-        <div class="field">
-          <%= f.label :registration_type, "Tipo de formulario" %>
-          <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}), {}, class: 'form-control' %>
-
-        </div>
-        <%= f.submit "Crear formulario", class: 'btn' %>
-
-      </div>
-
       <% end %>
     </div>
-    <div class=" p-2 mt-3">
-
-
-      <ul class="list-group" id="form-set-list">
-        <li class="list-group-item">
-          <%= link_to 'All Confirmations', all_responses_event_path, class: 'btn btn-primary' %>
-        </li>
-        <%= render partial: 'event_data_form_entity_groups/form_set', collection: @event.event_data_form_entity_groups, as: :edfeg, locals: {event: @event} %>
-
-      </ul>
-
-
-
+    <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-start justify-content-sm-center">
+      <% @event.open_forms.each do |dfe| %>
+        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "btn form-link shadow p-2 m-2 " do %>
+          <i class="fas fa-arrow-alt-circle-right"></i> <strong><%= dfe.entity.name.titlecase %></strong>
+        <% end %>
+      <% end %>
     </div>
-
-
   </div>
-
+  <% if allowed_view?(:data_form_entities, :form_responses) %>
+    <div class="d-flex row .flex-wrap ">
+      <div class=" p-3 m-2 col-md-3">
+        <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
+          <h5>Crear formularios</h5>
+          <small>Algo como un formulario de registro, formulario de retroalimentación, etc.</small>
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :name, "Nombre" %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="field">
+              <%= f.label :registration_type, "Tipo de formulario" %>
+              <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [translate_to_es(m.name), m.id]}), {}, class: 'form-control' %>
+            </div>
+            <%= f.submit "Crear formulario", class: 'btn' %>
+          </div>
+        <% end %>
+      </div>
+      <div class=" p-2 mt-3">
+        <ul class="list-group" id="form-set-list">
+          <li class="list-group-item">
+            <%= link_to 'All Confirmations', all_responses_event_path, class: 'btn btn-primary' %>
+          </li>
+          <%= render partial: 'event_data_form_entity_groups/form_set', collection: @event.event_data_form_entity_groups, as: :edfeg, locals: {event: @event} %>
+        </ul>
+      </div>
+    </div>
   <% end %>
-
   <% if @event.status? ([NameValues::EventStatusType::COMPLETED]) %>
-  <div>
-    <%= render 'events/available_resources', event: @event %>
-  </div>
+    <div>
+      <%= render 'events/available_resources', event: @event %>
+    </div>
   <% end %>
-
-
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
-
   <% if !@event.confirmed_speaker_registrations.empty? %>
-  <div>
-    <%= render 'confirmed_speakers', event: @event %>
-  </div>
+    <div>
+      <%= render 'confirmed_speakers', event: @event %>
+    </div>
   <% end %>
-
-
   <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-around mt-5">
     <div class="col-md-6 col-sm-12">
       <%= render 'events/event_description', event: @event, new_event_update: @new_event_update %>
     </div>
-
     <div class="m-1 col-md-5 col-sm-12 ">
-
       <%= render 'events/event_comments', event: @event, new_comment: @new_comment %>
-
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <% if allowed_view?(:locations, :create) %>
-  <div class="modal fade" id="new-event-location-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="new-event-location-modal-title">Add <%= @event.name %> Location</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-
-          <div class="mt-3 mb-3 d-flex">
-
-
-            <div class="card-body">
-              <%= form_for Location.new, url: event_locations_path(event_id: @event), remote: true do |f| %>
-              <div class="form-group">
-                <%= f.label :name %>
-                <%= f.text_field :name, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= f.label :address %>
-                <%= f.text_field :address, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= f.label :map_link %>
-                <%= f.text_field :map_link, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= f.submit 'Add Location', class: 'btn btn-outline-info' %>
-              </div>
-              <% end %>
-            </div>
-
-
+    <div class="modal fade" id="new-event-location-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="new-event-location-modal-title">Add <%= @event.name %> Location</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-
-
-
+          <div class="modal-body">
+            <div class="mt-3 mb-3 d-flex">
+              <div class="card-body">
+                <%= form_for Location.new, url: event_locations_path(event_id: @event), remote: true do |f| %>
+                  <div class="form-group">
+                    <%= f.label :name %>
+                    <%= f.text_field :name, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :address %>
+                    <%= f.text_field :address, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :map_link %>
+                    <%= f.text_field :map_link, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit 'Add Location', class: 'btn btn-outline-info' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
-
-
   <% if allowed_view?(:event_location_tracks, :create) %>
-  <div class="modal fade" id="new-event-location-track-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="new-event-location-track-modal-title">Add <%= @event.name %> Track For a Location</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-
-          <div class="mt-3 mb-3 d-flex">
-
-
-            <div class="card-body">
-              <%= render 'event_location_tracks/form', event: @event, event_location_tack: EventLocationTrack.new %>
-            </div>
-
-
+    <div class="modal fade" id="new-event-location-track-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="new-event-location-track-modal-title">Add <%= @event.name %> Track For a Location</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-
-
-
+          <div class="modal-body">
+            <div class="mt-3 mb-3 d-flex">
+              <div class="card-body">
+                <%= render 'event_location_tracks/form', event: @event, event_location_tack: EventLocationTrack.new %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
-
   <% content_for :page_scripts do %>
-  <script>
-
-  </script>
+    <script></script>
   <% end %>
 </section>
-
