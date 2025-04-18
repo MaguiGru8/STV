@@ -60,6 +60,7 @@
               <% if current_user.role?(:system_administrator, nil) %>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="current-user-menu-link">
                   <%= link_to 'Crear un seminario', new_kommunity_path, class: "dropdown-item" %>
+                  <%= link_to 'Administrar usuarios', admin_users_path, class: "dropdown-item" %>
                 </div>
               <% end %>
             </div>

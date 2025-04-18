@@ -41,6 +41,9 @@
   * rails db:seed
   * rails s
 
+### Know postgresql port
+* pg_lsclusters
+
 ### Clone/Download
 * `bundle install --deployment`
 * `rails db:setup` (though this will load the seed as well, but you can run rake db:seed, just in case)

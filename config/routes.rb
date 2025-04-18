@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     mount Resque::Server => "/resque"
   end
 
+  namespace :admin do
+    resources :users
+  end
+
   resources :kommunities, only: [:new, :create, :edit, :update], param: :kommunity
 
   scope ':kommunity' do

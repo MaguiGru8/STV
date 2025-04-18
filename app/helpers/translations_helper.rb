@@ -10,6 +10,9 @@ module TranslationsHelper
         'communication' => 'Comunicación',
         'attendee' => 'Inscriptos',
         'speaker' => 'Ponente',
+        'system_administrator' => 'Administrador',
+        'organizer' => 'Organizador',
+        'member' => 'Miembro'
       }
       translations[status_name.downcase] || status_name.titlecase
     end
