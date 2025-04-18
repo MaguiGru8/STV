@@ -1,20 +1,20 @@
 <div class="row" id="event-create-edit-form">
   <div class="card col-md-6 offset-md-3">
     <div class="card-body">
-      <h5 class="card-title">Editar detallles del evento</h5>
+      <h5 class="card-title"><%= t('events.edit_details') %></h5>
       <%= form_for @event, url: (@event.new_record? ?
       events_path : event_path(params[:kommunity], @event.slug)) do |f| %>
         <fieldset>
           <div class="form-group">
-            <%= f.label :kommunity, "Organizado por", class: "badge badge-secondary" %>
-            <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {:include_blank => 'Selecciona el año y curso'}, class: 'form-control' , required: true %>
+            <%= f.label :kommunity, t('events.organized_by'), class: "badge badge-secondary" %>
+            <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {:include_blank => t('events.select_year_course')}, class: 'form-control' , required: true %>
           </div>
           <div class="form-group">
-            <%= f.label :name, "Nombre del evento", class: "badge badge-secondary" %>
+            <%= f.label :name, t('events.event_name'), class: "badge badge-secondary" %>
             <%= f.text_field :name, class: 'form-control', required: true %>
           </div>
           <div class="form-group">
-            <%= f.label :description, "Detalles del evento", class: "badge badge-secondary" %>
+            <%= f.label :description, t('events.event_details'), class: "badge badge-secondary" %>
             <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
             <script>
               tinymce.init({
@@ -38,7 +38,7 @@
           <!--<%= f.number_field :seats, class: 'form-control' %>-->
           <!--</div>-->
           <div class="form-group">
-            <%= f.label :start_time, "Fecha y hora de inicio", class: "badge badge-secondary" %>
+            <%= f.label :start_time, t('events.start_date_time'), class: "badge badge-secondary" %>
             <div style="overflow:hidden;">
               <div class="form-group">
                 <div class="row">
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="form-group">
-            <%= f.label :end_time, "Fecha y hora de culminación", class: "badge badge-secondary" %>
+            <%= f.label :end_time, t('events.end_date_time'), class: "badge badge-secondary" %>
             <div style="overflow:hidden;">
               <div class="form-group">
                 <div class="row">
@@ -61,7 +61,7 @@
               </div>
             </div>
           </div>
-          <%= f.submit "Guardar", class: "btn btn-warning" %>
+          <%= f.submit t('forms.save'), class: "btn btn-warning" %>
           <!-- El resto del código permanece igual hasta la sección de script -->
           <script type="text/javascript">
             $(function () {
