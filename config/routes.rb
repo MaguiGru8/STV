@@ -182,7 +182,9 @@ Rails.application.routes.draw do
 
   match '*all', to: proc { [204, {}, ['']] }, via: :options
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
 
 

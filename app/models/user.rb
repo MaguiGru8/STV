@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable, :recoverable, , :registerable
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :registerable, :recoverable
 
 
 
@@ -78,6 +78,11 @@ class User < ApplicationRecord
 
   def role?(role_sym, kommunity_id)
     user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && (role_sym == :system_administrator || r.kommunity_id == kommunity_id) }
+  end
+
+
+  def member?
+    user_roles_users.includes(:user_role).any? { |r| r.user_role.name == NameValues::UserRoleType::MEMBER }
   end
 
 
