@@ -12,7 +12,12 @@ module TranslationsHelper
         'speaker' => 'Ponente',
         'system_administrator' => 'Administrador',
         'organizer' => 'Organizador',
-        'member' => 'Miembro'
+        'member' => 'Miembro',
+        'short_answer' => 'Respuesta corta',
+        'long_answer' => 'Respuesta larga',
+        'number' => 'Numérico',
+        'single_choice' => 'Elección única',
+        'multiple_choice' => 'Elección múltiple'
       }
       translations[status_name.downcase] || status_name.titlecase
     end

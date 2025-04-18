@@ -1,7 +1,7 @@
 <% content_for :page_title do %>
   Inicio
 <% end %>
-<h2 class="text-center text-primary"><%= t('auth.welcome') %></h2>
+<h2 class="text-center text-primary"><%= t('modals.welcome_sign_in') %></h2>
 <div class="d-flex justify-content-center gap-2">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "w-25 mt-3" }) do |f| %>
     <div class="form-group">
