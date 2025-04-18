@@ -1,6 +1,6 @@
 <div class="p-3 m-1 bg-white  event-description">
   <h5>
-    Detalles
+    <%= t('events.details') %>
   </h5>
   <%= render 'event_updates/display_card', event: @event, new_event_update: new_event_update %>
   <%= event.description.html_safe %>

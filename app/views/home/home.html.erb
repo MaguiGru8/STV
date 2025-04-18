@@ -1,12 +1,12 @@
 <% content_for :page_title do %>
-  Seminarios | Próximos
+  <%= t('home.page_title') %>
 <% end %>
 <section id="home-home" class="py-5">
   <div class="row justify-content-center">
     <div class="col-md-9 horizontal-cards mb-5">
       <div class="d-flex align-items-center mb-4">
         <i class="fas fa-calendar-alt text-primary me-3 fa-2x mr-2"></i>
-        <h3 class="text-primary mb-0">Próximos eventos</h3>
+        <h3 class="text-primary mb-0"><%= t('home.upcoming_events') %></h3>
       </div>
       <% if !@upcoming_events.empty? %>
         <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
@@ -17,13 +17,13 @@
           <% end %>
         </div>
       <% else %>
-        No se han encontrado eventos
+        <%= t('home.no_events_found') %>
       <% end %>
     </div>
     <div class="col-md-9 horizontal-cards mb-5">
       <div class="d-flex align-items-center mb-4">
         <i class="fas fa-users text-success me-3 fa-2x mr-2"></i>
-        <h3 class="text-success mb-0">Ediciones Seminario Tecnológico de Vanguardia</h3>
+        <h3 class="text-success mb-0"><%= t('home.editions') %></h3>
       </div>
       <% if !@kommunities.empty? %>
         <div class="row d-flex flex-md-row flex-sm-column flex-nowrap ">
@@ -34,13 +34,13 @@
           <% end %>
         </div>
       <% else %>
-        No se han encontrado eventos
+        <%= t('home.no_events_found') %>
       <% end %>
     </div>
     <div class="col-md-9 horizontal-cards">
       <div class="d-flex align-items-center mb-4">
         <i class="fas fa-history text-secondary me-3 fa-2x mr-2"></i>
-        <h3 class="text-secondary">Eventos pasados</h3>
+        <h3 class="text-secondary"><%= t('home.past_events') %></h3>
       </div>
       <% if !@recent_past_events.empty? %>
         <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
@@ -51,7 +51,7 @@
           <% end %>
         </div>
       <% else %>
-        No se han encontrado eventos
+        <%= t('home.no_events_found') %>
       <% end %>
     </div>
   </div>

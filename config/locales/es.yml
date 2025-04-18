@@ -1,6 +1,13 @@
 es:
   hello: "Hola mundo"
   
+  home:
+    page_title: "Seminarios | Próximos"
+    upcoming_events: "Próximos eventos"
+    past_events: "Eventos pasados"
+    editions: "Ediciones Seminario Tecnológico de Vanguardia"
+    no_events_found: "No se han encontrado eventos"
+  
   navigation:
     create_seminar: "Crear un seminario"
     manage_users: "Administrar usuarios"
@@ -50,6 +57,17 @@ es:
       closed: "Cerrado"
       completed: "Completado"
       canceled: "Cancelado"
+      
+    details: "Detalles"
+    locations:
+      name: "Nombre"
+      address: "Dirección"
+      map_link: "Enlace del mapa"
+      
+    tracks:
+      name: "Nombre"
+      description: "Descripción"
+      track_type: "Tipo de pista"
     
   activerecord:
     models:
