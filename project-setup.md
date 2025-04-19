@@ -30,6 +30,8 @@
   * rvm install 2.5.0
   * sudo apt install libpq-dev
   * sudo apt-get install nodejs
+  * sudo apt install redis-server
+  * sudo apt-get install libjpeg-dev
   * sudo apt install postgresql postgresql-contrib
   * sudo -i -u postgres
     * psql
@@ -40,7 +42,6 @@
   * rails db:setup
   * rails db:seed
   * rails s
-  * sudo apt install redis-server
 
 ### Know postgresql port
 * pg_lsclusters

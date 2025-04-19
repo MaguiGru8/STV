@@ -16,6 +16,10 @@ gem 'resque-scheduler'
 
 gem 'htmlbeautifier'
 
+# PDF generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 gem 'font-awesome-rails'
 
 gem 'momentjs-rails'

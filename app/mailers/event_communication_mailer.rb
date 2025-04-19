@@ -109,6 +109,30 @@ class EventCommunicationMailer < ApplicationMailer
         event_entry_pass: @event_entry_pass,
         fixed_email_id: fixed_email.id
     )
+    
+    begin
+      # Log information for debugging
+      Rails.logger.info "Generating certificate for user: #{@user.name} for event: #{@event.name}"
+      
+      # Generate certificate PDF
+      certificate_pdf = CertificateGenerator.generate_participation_certificate(@user, @event)
+      
+      # Create a filename for the certificate
+      filename = "#{@event.name.parameterize}-certificate-#{@user.name.parameterize}.pdf"
+      
+      Rails.logger.info "Attaching certificate: #{filename}"
+      
+      # Attach the certificate to the email
+      attachments[filename] = { 
+        mime_type: 'application/pdf',
+        content: certificate_pdf
+      }
+      
+      Rails.logger.info "Certificate attached successfully"
+    rescue => e
+      Rails.logger.error "Error attaching certificate: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+    end
 
     mail(
         to: @event_entry_pass.user.email,

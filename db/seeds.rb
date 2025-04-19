@@ -25,24 +25,6 @@ user = User.create!(
 system_administrator_role = UserRole.find_by_name("system_administrator")
 user.user_roles << system_administrator_role
 
-
-user = User.create!(
-  email: 'orga@example.com',
-  password: '123456',
-  password_confirmation: '123456'
-)
-organizer_role = UserRole.find_by_name("organizer")
-user.user_roles << organizer_role
-
-
-user = User.create!(
-  email: 'member@example.com',
-  password: '123456',
-  password_confirmation: '123456'
-)
-member_role = UserRole.find_by_name("member")
-user.user_roles << member_role
-
 RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
   RegistrationStatus.all.each do |rst|
     rst.registration_types << rt
