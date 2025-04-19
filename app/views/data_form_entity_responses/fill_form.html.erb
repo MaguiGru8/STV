@@ -25,65 +25,71 @@
           <div class="">
             <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::FEEDBACK]) %>
               <div class="card-text mt-3 text-center">
-                <h5>It was great having you over at the event!</h5>
-                <p>It'd be great to know how was your day!</p>
+                <h5>¡Fue genial tenerte en el evento!</h5>
+                <p>¡Sería genial saber cómo estuvo tu día!</p>
               </div>
             <% end %>
             <% if !@existing_response.blank? %>
               <div class="alert alert-info text-center" role="alert">
-                You have already filled the form, please feel free to update your response!
+                Ya has rellenado el formulario, ¡no dudes en actualizar tu respuesta!
               </div>
             <% end %>
             <div id="fillable-form" class="card col-md-10 offset-md-1">
               <div class="card-body">
                 <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user, ots: @ots) do |f| %>
                   <% if user_signed_in? &&  current_user.role?(:organizer, @kommunity.id) && @for_other_user %>
-                    <h3>Add user information</h3>
-                    <div class="form-group">
-                      <%= f.label :user_email %>
-                      <%= f.text_field :user_email, placeholder: "Other User Email", required: true %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :user_name %>
-                      <%= f.text_field :user_name, placeholder: "Name", required: true %>
+                    <div class="card">
+                      <div class="card-body">
+                        <h3 class="card-title mb-4">Añadir info del usuario</h3>
+                        <div class="form-group">
+                          <%= f.label :user_email, "Email", class: "font-weight-bold" %>
+                          <%= f.text_field :user_email, 
+                       class: "form-control",
+                       placeholder: "Añade su dirección de correo electrónico", 
+                       required: true %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label :user_name, "Nombre", class: "font-weight-bold" %>
+                          <%= f.text_field :user_name, 
+                       class: "form-control",
+                       placeholder: "Añade su nombre completo", 
+                       required: true %>
+                        </div>
+                      </div>
                     </div>
                   <% end %>
                   <% if user_signed_in? && !@for_other_user %>
-                    <h5> A Little About You! </h5>
+                    <h5> Un poco sobre vos! </h5>
                     <div class="form-group profile-image-input text-center">
                       <div class="existing-profile-image">
-                        <img id="user-profile-image" alt="Your Profile Image" src="<%= url_for(current_user.avatar) %>">
+                        <img id="user-profile-image" alt="Añade una foto" src="<%= url_for(current_user.avatar) %>">
                       </div>
-                      <%= f.label :profile_image, 'Your Profile Image', for: 'profile-image', class: 'custom-file-label' %>
+                      <%= f.label :profile_image, 'Tu foto de perfil', for: 'profile-image', class: 'custom-file-label' %>
                       <%= f.file_field :profile_image, class: 'custom-file-input', id: 'profile-image', onchange: 'showImage(this, "user-profile-image");', accept: "image/*" %>
                     </div>
                     <div class="form-group">
-                      <%= f.label :designation, "How does the world know you! (If you're a professional or run a community or ...) [If you're a speaker, this would be visible on your profile card]" %>
-                      <%= f.text_field :designation, placeholder: "Designation, Organization", value: current_user.designation, class: 'form-control' %>
+                      <%= f.label :designation, "¿Cómo te conoce el mundo? (Si eres un profesional o diriges una comunidad o...) [Si eres un orador, esto será visible en tu tarjeta de perfil]" %>
+                      <%= f.text_field :designation, placeholder: "Por ejemplo fundador de SpaceX, CEO de Meta", value: current_user.designation, class: 'form-control' %>
                     </div>
                     <div class="form-group">
-                      <%= f.label :about_me, "A little about you in your own words!" %>
-                      <%= f.text_area :about_me, placeholder: "I am a...", value: current_user.about_me, class: 'form-control' %>
+                      <%= f.label :about_me, "Contanos un poco de vos con tus palabras" %>
+                      <%= f.text_area :about_me, placeholder: "Yo soy un master en tal cosa...", value: current_user.about_me, class: 'form-control' %>
                     </div>
                     <div class="form-group">
-                      <%= f.label :linkedin_profile, 'Linkedin Profile (Please give the complete link)' %>
-                      <%= f.text_field :linkedin_profile, placeholder: "Linkedin Profile", value: current_user.linkedin, class: 'form-control' %>
+                      <%= f.label :linkedin_profile, 'Perfil de Linkedin (Por favor, proporcione el enlace completo)' %>
+                      <%= f.text_field :linkedin_profile, placeholder: "Perfil de Linkendin", value: current_user.linkedin, class: 'form-control' %>
                     </div>
                     <div class="form-group">
-                      <%= f.label :personal_website, 'Do you have a Website About You? (Optional)' %>
-                      <%= f.text_field :personal_website, placeholder: "Link to Your Personal Website", value: current_user.personal_website, class: 'form-control'%>
+                      <%= f.label :personal_website, 'Tenes una web sobre vos? No redes sociales' %>
+                      <%= f.text_field :personal_website, placeholder: "Añade aqui el link", value: current_user.personal_website, class: 'form-control'%>
                     </div>
                     <div class="form-group">
-                      <%= f.label :twitter_profile, 'Are you on Twitter? Your, @handle please!' %>
-                      <%= f.text_field :twitter_profile, placeholder: "@myhandle", value: current_user.twitter, class: 'form-control'%>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :github_profile, 'Github Profile (Please share the complete link)' %>
-                      <%= f.text_field :github_profile, placeholder: "Github Profile Link", value: current_user.github, class: 'form-control'%>
+                      <%= f.label :twitter_profile, 'Tenes twitter? o actualmente llamado X' %>
+                      <%= f.text_field :twitter_profile, placeholder: "@tuarroba", value: current_user.twitter, class: 'form-control'%>
                     </div>
                   <% end %>
                   <br>
-                  <h5>Some More Questions...</h5>
+                  <h5>Algunas preguntas más..</h5>
                   <ul class="list-group">
                     <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
                       <li class="list-group-item">
@@ -99,15 +105,15 @@
                           <% case question.question_type.name %>
                           <% when "short_answer" %>
                           <div>
-                            <%= f.text_field question.id, placeholder: "Short Answer" , required: question.required, value: @existing_response[question.id], class: "form-control" %>
+                            <%= f.text_field question.id, placeholder: "Respuesta corta" , required: question.required, value: @existing_response[question.id], class: "form-control" %>
                           </div>
                           <% when "long_answer" %>
                           <div>
-                            <%= f.text_area question.id, placeholder: "Long Answer", required: question.required, value: @existing_response[question.id], class: "form-control" %>
+                            <%= f.text_area question.id, placeholder: "Respuesta larga", required: question.required, value: @existing_response[question.id], class: "form-control" %>
                           </div>
                           <% when "number" %>
                           <div>
-                            <%= f.number_field question.id, placeholder: "Number", required: question.required, value: @existing_response[question.id], class: "form-control" %>
+                            <%= f.number_field question.id, placeholder: "Sólo números", required: question.required, value: @existing_response[question.id], class: "form-control" %>
                           </div>
                           <% when "single_choice" %>
                           <div>
@@ -133,7 +139,7 @@
                     <%= render 'data_form_entity_responses/user_event_location_grid', f: f, event: @event, event_locations: @event.event_locations %>
                   </div>
                 <% end %>
-                <%= f.submit 'Submit', class: 'btn btn-outline-info' %>
+                <%= f.submit 'Guardar', class: 'btn btn-outline-info' %>
               <% end %>
             </div>
           </div>

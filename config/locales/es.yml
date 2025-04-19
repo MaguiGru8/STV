@@ -190,3 +190,7 @@ es:
       long: "%d de %B de %Y %H:%M"
     am: "am"
     pm: "pm"
+
+  
+  mailers:
+    send_emails_to: "Enviar los emails a %{type}"
