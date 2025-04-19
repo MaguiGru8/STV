@@ -11,8 +11,8 @@
       <%= f.label :kommunity, t('forms.community') %>
       <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {}, class: 'form-control' %>
     </div>
-    <div class="form-group card p-3">
-      <p><%= t('forms.questions') %></p>
+    <p><%= t('forms.questions') %></p>
+    <div>
       <%= f.fields_for :questions do |builder| %>
         <%= render "question_fields", f: builder %>
       <% end %>

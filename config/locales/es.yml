@@ -24,7 +24,7 @@ es:
   forms:
     community: "Comunidad"
     questions: "Preguntas"
-    add_question: "Agregar Pregunta"
+    add_question: "Agregar pregunta"
     submit: "Enviar"
     save: "Guardar"
     name: "Nombre"
