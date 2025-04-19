@@ -17,7 +17,13 @@ module TranslationsHelper
         'long_answer' => 'Respuesta larga',
         'number' => 'Numérico',
         'single_choice' => 'Elección única',
-        'multiple_choice' => 'Elección múltiple'
+        'multiple_choice' => 'Elección múltiple',
+        'open' => 'Abierto',
+        'yet_to_announce' => 'Aún por anunciar',
+        'open_but_invisible' => 'Abierto pero invisible',
+        'members_who_have_attended' => 'Miembros que han asistido',
+        'closed' => 'Cerrado',
+        'on_the_spot_uninvited' => 'En el lugar sin invitación',
       }
       translations[status_name.downcase] || status_name.titlecase
     end
