@@ -18,7 +18,6 @@ module TranslationsHelper
         'number' => 'Numérico',
         'single_choice' => 'Elección única',
         'multiple_choice' => 'Elección múltiple',
-        'open' => 'Abierto',
         'yet_to_announce' => 'Aún por anunciar',
         'open_but_invisible' => 'Abierto pero invisible',
         'members_who_have_attended' => 'Miembros que han asistido',

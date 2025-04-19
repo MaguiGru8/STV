@@ -40,6 +40,7 @@
   * rails db:setup
   * rails db:seed
   * rails s
+  * sudo apt install redis-server
 
 ### Know postgresql port
 * pg_lsclusters

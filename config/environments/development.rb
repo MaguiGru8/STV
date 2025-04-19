@@ -39,10 +39,13 @@ Rails.application.configure do
   end
 
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Enable error raising for email delivery issues
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+  
+  # Log email delivery
+  config.action_mailer.logger = Logger.new(STDOUT)
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -69,16 +72,21 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
   config.action_mailer.raise_delivery_errors = true
+  
+  # Use letter_opener_web for email delivery in development
+  # config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.perform_deliveries = true
+  
+  # SMTP settings for Gmail - uncomment these and comment out letter_opener_web above to use real email delivery
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 587,
-      domain:               'localhost:3000',
+      domain:               'gmail.com',
       user_name:            ENV["GDG_EMAIL_USERNAME"],
       password:             ENV["GDG_EMAIL_PASSWORD"],
       authentication:       'plain',
-      enable_starttls_auto: true
+      enable_starttls_auto: true,
+      openssl_verify_mode:  'none'
   }
-
-
 end

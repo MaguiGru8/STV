@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     mount Resque::Server => "/resque"
   end
 
+  # Mount letter_opener web interface
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  # Test email route
+  get 'test_email', to: 'test_emails#send_test'
+
   namespace :admin do
     resources :users
   end

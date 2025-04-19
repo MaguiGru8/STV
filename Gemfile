@@ -24,6 +24,7 @@ gem 'tinymce-rails'
 
 group :development do
   gem "rails-erd"
+  gem 'letter_opener_web'
 end
 
 gem 'friendly_id', '~> 5.1.0'
