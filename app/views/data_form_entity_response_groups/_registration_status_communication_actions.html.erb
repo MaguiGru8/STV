@@ -1,25 +1,14 @@
 <div id="registration-communication-actions-<%= dferg.id %>">
   <% if !(["registered", "waiting", "confirmed", "cancelled"].include? dferg.registration_status.name) %>
-
     <%= link_to "Send RSVP Email", data_form_entity_response_group_rsvp_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id), class: "btn btn-primary btn-sm", remote: true %>
-
   <% end %>
-
   <% if (dferg.registration_status.confirmed?) %>
-
-  <%= link_to "Send Entry Pass", data_form_entity_response_group_entry_pass_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id), class: "badge badge-primary", remote: true %>
-
+    <%= link_to "Send Entry Pass", data_form_entity_response_group_entry_pass_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id), class: "badge badge-primary", remote: true %>
   <% end %>
-
   <p class="text-info">
     <% if !dferg.fixed_emails_delivered_types.empty? %>
-    <small><strong>Emails Sent</strong>: <%= dferg.fixed_emails_delivered_types.uniq.join(', ') %></small>
+      <small><strong>Emails Sent</strong>: <%= dferg.fixed_emails_delivered_types.uniq.join(', ') %></small>
     <% end %>
   </p>
-
-
-
-
 </div>
-
 <!--Change the status to confirmed as soon as an entry pass is sent-->
