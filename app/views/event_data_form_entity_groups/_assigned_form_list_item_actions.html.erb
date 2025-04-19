@@ -1,30 +1,21 @@
 <div class="d-flex">
   <div class="d-flex">
-    <span class="mr-2">Visible to:</span>
+    <span class="mr-2">Visible para:</span>
     <%= form_with url: update_form_visibility_event_path(data_form_entity: dfe), method: :post, remote: true do |f| %>
-    <%= f.select :visibility, options_for_select(DataFormEntity.visibilities.keys, dfe.visibility), {}, :onchange => 'Rails.fire(this.form, "submit")', class: 'form-control' %>
+      <%= f.select :visibility, options_for_select(DataFormEntity.visibilities.keys.map { |key| [translate_to_es(key), key] }, dfe.visibility), {}, { onchange: 'Rails.fire(this.form, "submit")', class: 'form-control' } %>
     <% end %>
   </div>
-
-
-
   <!--<% link_to 'Fill', fill_form_response_path(data_form_entity_id: dfe), class: 'ml-2 text-primary' %>-->
-
   <% if dfe.entity.registration_type?(NameValues::RegistrationsType::FEEDBACK) %>
-  <div class="ml-2">
-    <%= link_to "Send Remaining Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: false), remote: true %>
-    <br>
-    <%= link_to "Resend Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: true), remote: true %>
-  </div>
-
+    <div class="ml-2">
+      <%= link_to "Send Remaining Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: false), remote: true %>
+      <br>
+      <%= link_to "Resend Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: true), remote: true %>
+    </div>
   <% elsif dfe.entity.registration_type?([NameValues::RegistrationsType::ATTENDEE, NameValues::RegistrationsType::SPEAKER]) %>
-  <div class="ml-2">
-    <%= link_to "Send #{dfe.entity.registration_type.name} Emails", registration_email_event_communication_mailers_path(dfe: dfe), remote: true %>
-  </div>
-
-
+    <div class="ml-2">
+      <%= link_to "Send #{dfe.entity.registration_type.name} Emails", registration_email_event_communication_mailers_path(dfe: dfe), remote: true %>
+    </div>
   <% end %>
-
   <%= link_to 'Fill For A User', fill_form_response_path(data_form_entity_id: dfe, for_other_user: true), class: 'ml-2 text-primary' %>
-
 </div>
